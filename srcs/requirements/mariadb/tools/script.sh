@@ -14,7 +14,6 @@ if [ ! -d "/var/lib/mysql/$MYSQL_DATABASE" ]; then
 	FLUSH PRIVILEGES;
 EOF
 	
-	# Kill the process properly
 	mysqladmin -u root -p"$MYSQL_ROOT_PASSWORD" shutdown
 	sleep 3
 fi

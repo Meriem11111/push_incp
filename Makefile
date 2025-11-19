@@ -23,7 +23,6 @@ up: create-dirs
 	@echo "$(YELLOW)Starting containers...$(RESET)"
 	@docker compose -f $(COMPOSE_FILE) up -d
 	@echo "$(GREEN)✓ Containers are up!$(RESET)"
-	@$(MAKE) --no-print-directory status
 
 down:
 	@echo "$(YELLOW)Stopping containers...$(RESET)"
@@ -60,11 +59,11 @@ create-dirs:
 remove-dirs:					
 	@echo "$(RED)Removing data directories...$(RESET)"
 	@if [ -d "$(WP_DATA_DIR)" ]; then \
-		rm -rf $(WP_DATA_DIR); \
+		sudo rm -rf $(WP_DATA_DIR); \
 		echo "$(GREEN)✓ WordPress data removed$(RESET)"; \
 	fi
 	@if [ -d "$(DB_DATA_DIR)" ]; then \
-		rm -rf $(DB_DATA_DIR); \
+		sudo rm -rf $(DB_DATA_DIR); \
 		echo "$(GREEN)✓ MariaDB data removed$(RESET)"; \
 	fi
 

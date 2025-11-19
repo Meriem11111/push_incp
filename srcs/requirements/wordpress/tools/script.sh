@@ -29,10 +29,12 @@ if ! wp core is-installed --allow-root; then
 	--allow-root
 fi
 
-echo "Creating second user..."
-wp user create $SECOND_USER $SECOND_USER_EMAIL \
-		--user_pass=$SECOND_USER_PASSWORD \
-		--role=subscriber \
-		--allow-root
+if ! wp user get $SECOND_USER --allow-root &>/dev/null; then
+    echo "Creating second user..."
+    wp user create $SECOND_USER $SECOND_USER_EMAIL \
+        --user_pass=$SECOND_USER_PASSWORD \
+        --role=subscriber \
+        --allow-root
+fi
 
-php-fpm8.2 -F
+exec php-fpm7.4 -F

@@ -1,7 +1,5 @@
-
 FROM debian:bullseye
 
-# Install PHP-FPM and required extensions from Debian repos
 RUN apt-get update && apt-get install -y \
     php-fpm \
     php-mysql \
@@ -11,16 +9,13 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install WP-CLI
 RUN curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x /usr/local/bin/wp
 
-# Configure PHP-FPM to listen on port 9000
-# Debian Bullseye has PHP 7.4 by default
+
 RUN sed -i "s|listen = /run/php/php7.4-fpm.sock|listen = 0.0.0.0:9000|" /etc/php/7.4/fpm/pool.d/www.conf \
     && mkdir -p /run/php
 
-# Copy entrypoint script
 COPY ./tools/script.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/script.sh
 

@@ -7,7 +7,7 @@ if [ ! -f /etc/nginx/ssl/certificate.crt ] || [ ! -f /etc/nginx/ssl/certificate.
         -nodes \
         -out "/etc/nginx/ssl/certificate.crt" \
         -keyout "/etc/nginx/ssl/certificate.key" \
-        -subj "/C=MA/ST=BG/L=Benguerir/O=42/OU=42/CN=42.meabdelk.fr/UID=meabdelk" \
+        -subj "/C=MA/ST=BG/L=Benguerir/O=42/OU=42/CN=42.login.fr/UID=login" \
         -days 365
 fi
 

@@ -2,7 +2,7 @@
 
 until mysqladmin ping -h"$DB_HOST" -P"$DB_HOST_PORT" --silent; do
 #   echo "Waiting for MariaDB..."
-  sleep 2
+  sleep 20
 done
 
 echo "MariaDB is ready!"
@@ -20,7 +20,7 @@ fi
 
 if ! wp core is-installed --allow-root; then
 	wp core install \
-	--url="https://meabdelk.42.fr" \
+	--url="https://login.42.fr" \
 	--title="$TITLE" \
 	--admin_user="$ADMIN_USER" \
 	--admin_password="$ADMIN_USER_PASSWORD" \
